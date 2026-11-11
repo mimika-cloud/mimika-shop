@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>mimika.shop — Rumah bagi usaha lokal Mimika</title>
+    <meta name="description" content="Temukan dan hubungi usaha lokal di Timika dan Mimika: kuliner & kopi, otomotif, toko, dan jasa. Setiap usaha punya halaman sendiri di mimika.shop.">
+    <meta name="theme-color" content="#0f3d3e">
+    <meta property="og:title" content="mimika.shop — Rumah bagi usaha lokal Mimika">
+    <meta property="og:description" content="Temukan dan hubungi usaha lokal di Timika dan Mimika.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/app.css">
+</head>
+<body class="bg-pasir font-sans text-tinta antialiased">
+
+<header class="sticky top-0 z-30 border-b border-laut/10 bg-pasir/90 backdrop-blur">
+    <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
+        <a href="#" class="flex items-center gap-2.5">
+            <img src="assets/img/logo.svg" alt="" class="h-9 w-9">
+            <span class="text-lg font-bold tracking-tight text-laut">mimika<span class="text-senja-600">.shop</span></span>
+        </a>
+        <nav class="hidden items-center gap-6 text-sm font-medium text-laut/80 sm:flex">
+            <a href="#usaha" class="hover:text-laut">Usaha</a>
+            <a href="#cara" class="hover:text-laut">Cara bergabung</a>
+            <a href="https://demo.mimika.shop" class="hover:text-laut">Coba demo</a>
+            <a href="https://mimika.cloud" class="hover:text-laut">Masuk pemilik usaha</a>
+        </nav>
+        <a href="#gabung" class="btn bg-laut text-white hover:bg-laut-700">Daftarkan usaha</a>
+    </div>
+</header>
+
+<main>
+    <!-- HERO -->
+    <section class="motif relative overflow-hidden">
+        <div class="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)] gap-10 px-5 py-14 sm:py-20 lg:grid-cols-[1.2fr_1fr] lg:items-center">
+            <div>
+                <p class="text-xs font-semibold uppercase tracking-[0.25em] text-senja-600">Timika · Mimika · Papua Tengah</p>
+                <h1 class="mt-4 font-display text-[2.6rem] font-bold leading-[1.1] text-laut sm:text-6xl">
+                    Rumah bagi <span class="relative sm:whitespace-nowrap">usaha lokal<svg class="absolute -bottom-2 left-0 h-3 w-full text-senja" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 9c50-6 140-8 196-3" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round"/></svg></span> Mimika.
+                </h1>
+                <p class="mt-6 max-w-xl text-lg leading-relaxed text-tinta/70">Cari cucian mobil, kafe, toko, dan jasa di sekitar Anda. Lihat layanannya, lalu langsung chat atau pesan ke pemilik usahanya.</p>
+
+                <form class="mt-8 flex max-w-xl items-center gap-2 rounded-full bg-white p-1.5 shadow-lg shadow-laut/5 ring-1 ring-laut/10" onsubmit="event.preventDefault(); document.getElementById('usaha').scrollIntoView();">
+                    <svg class="ml-3 h-5 w-5 shrink-0 text-laut/40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                    <label for="cari" class="sr-only">Cari usaha</label>
+                    <input id="cari" type="search" placeholder="Cari: cuci mobil, kopi, minimarket…" class="min-w-0 flex-1 bg-transparent py-2 text-base outline-none placeholder:text-tinta/40">
+                    <button class="btn bg-senja text-laut hover:bg-senja-600">Cari</button>
+                </form>
+                <p class="mt-4 text-sm text-tinta/50"><span id="jumlah-usaha">0</span> usaha lokal sudah bergabung.</p>
+            </div>
+
+            <!-- Kartu dekoratif -->
+            <div class="relative hidden lg:block" aria-hidden="true">
+                <div class="absolute -right-10 -top-10 h-72 w-72 rounded-full bg-senja/25 blur-3xl"></div>
+                <div class="relative rotate-2 rounded-3xl bg-laut p-6 text-white shadow-2xl">
+                    <p class="text-xs uppercase tracking-widest text-white/50">Etalase hari ini</p>
+                    <ul id="hero-list" class="mt-4 space-y-3"></ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DAFTAR USAHA -->
+    <section id="usaha" class="mx-auto max-w-6xl scroll-mt-20 px-5 py-14">
+        <div class="flex flex-wrap items-end justify-between gap-4">
+            <div>
+                <h2 class="font-display text-3xl font-bold text-laut">Usaha di mimika.shop</h2>
+                <p class="mt-1 text-tinta/60">Setiap usaha punya halaman sendiri, dikelola langsung oleh pemiliknya.</p>
+            </div>
+            <div id="kategori" class="flex flex-wrap gap-2" role="group" aria-label="Filter kategori"></div>
+        </div>
+        <div id="grid" class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
+        <p id="kosong" class="mt-8 hidden rounded-2xl bg-white p-8 text-center text-tinta/60">Belum ada usaha yang cocok. Coba kata lain, atau <a href="#gabung" class="font-semibold text-laut underline">ajak usaha itu bergabung</a>.</p>
+    </section>
+
+    <!-- CARA BERGABUNG -->
+    <section id="cara" class="scroll-mt-20 bg-white">
+        <div class="mx-auto max-w-6xl px-5 py-16">
+            <h2 class="font-display text-3xl font-bold text-laut">Punya usaha di Mimika?</h2>
+            <p class="mt-2 max-w-2xl text-tinta/60">Kami bantu usaha Anda tampil di internet dengan alamat sendiri, misalnya <b class="text-laut">namausaha.mimika.shop</b>.</p>
+            <ol class="mt-10 grid gap-6 md:grid-cols-3">
+                <li class="rounded-2xl bg-pasir p-6">
+                    <span class="grid h-10 w-10 place-items-center rounded-full bg-laut font-bold text-white">1</span>
+                    <h3 class="mt-4 text-lg font-semibold text-laut">Hubungi kami</h3>
+                    <p class="mt-1 text-sm leading-relaxed text-tinta/70">Ceritakan usaha Anda: apa yang dijual, lokasi, jam buka, dan nomor WhatsApp.</p>
+                </li>
+                <li class="rounded-2xl bg-pasir p-6">
+                    <span class="grid h-10 w-10 place-items-center rounded-full bg-laut font-bold text-white">2</span>
+                    <h3 class="mt-4 text-lg font-semibold text-laut">Halaman usaha dibuatkan</h3>
+                    <p class="mt-1 text-sm leading-relaxed text-tinta/70">Halaman dengan nama usaha Anda, berisi layanan, harga, lokasi, dan tombol chat. Bila perlu, lengkap dengan booking dan kasir.</p>
+                </li>
+                <li class="rounded-2xl bg-pasir p-6">
+                    <span class="grid h-10 w-10 place-items-center rounded-full bg-laut font-bold text-white">3</span>
+                    <h3 class="mt-4 text-lg font-semibold text-laut">Pelanggan datang</h3>
+                    <p class="mt-1 text-sm leading-relaxed text-tinta/70">Usaha Anda tampil di mimika.shop. Pembayaran tetap langsung ke usaha Anda, tanpa perantara.</p>
+                </li>
+            </ol>
+            <div class="mt-8 flex flex-wrap items-center gap-3 rounded-2xl bg-laut-50 p-5">
+                <p class="flex-1 text-sm text-laut"><b>Ingin melihat aplikasinya dulu?</b> Coba demo dengan data contoh: website, booking, antrian, kasir, dan laporan.</p>
+                <a href="https://demo.mimika.shop" class="btn bg-laut text-white hover:bg-laut-700">Coba demo aplikasi →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="gabung" class="scroll-mt-20">
+        <div class="mx-auto max-w-6xl px-5 py-16">
+            <div class="relative overflow-hidden rounded-3xl bg-laut px-8 py-12 text-white sm:px-12">
+                <div class="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-senja/30 blur-3xl" aria-hidden="true"></div>
+                <div class="relative flex flex-wrap items-center justify-between gap-6">
+                    <div class="max-w-xl">
+                        <h2 class="font-display text-3xl font-bold">Ajak usaha Anda bergabung</h2>
+                        <p class="mt-2 text-white/70">Usaha kecil, besar, baru mulai, atau sudah lama berjalan di Mimika, semuanya bisa bergabung.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <a id="cta-wa" href="https://mimika.cloud" class="btn bg-senja text-laut hover:bg-senja-600">Daftarkan usaha</a>
+                        <a href="https://demo.mimika.shop" class="btn bg-white/10 text-white ring-1 ring-white/20 hover:bg-white/20">Coba demo</a>
+                        <a href="https://mimika.cloud" class="btn bg-white/10 text-white ring-1 ring-white/20 hover:bg-white/20">Sudah terdaftar? Masuk</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="border-t border-laut/10">
+    <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-5 py-8 text-sm text-tinta/60">
+        <p class="flex items-center gap-2"><img src="assets/img/logo.svg" alt="" class="h-6 w-6"> © <span id="tahun">2026</span> mimika.shop · Dari Mimika, untuk Mimika.</p>
+        <nav class="flex flex-wrap gap-5">
+            <a href="https://mimika.cloud" class="hover:text-laut">Aplikasi Rumah Usaha</a>
+            <a href="https://pasarsentral.mimika.cloud" class="hover:text-laut">Portal Pasar Sentral</a>
+        </nav>
+    </div>
+</footer>
+
+<script src="assets/usaha.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

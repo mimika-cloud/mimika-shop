@@ -1,0 +1,1 @@
+{ "private": true, "scripts": { "build": "tailwindcss -i src/app.css -o public/assets/app.css --minify && node -e \"require('fs').mkdirSync('demo/assets',{recursive:true});require('fs').copyFileSync('public/assets/app.css','demo/assets/app.css')\"" } }

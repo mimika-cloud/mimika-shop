@@ -1,0 +1,45 @@
+MIMIKA.SHOP — halaman depan "rumah usaha lokal Mimika"
+=====================================================
+
+Situs statis (HTML + CSS + JS). Tidak perlu PHP, database, atau Composer.
+
+ISI FOLDER
+  public/                  -> inilah isi website (yang diunggah ke hosting)
+    index.html             -> halaman depan
+    assets/usaha.js        -> DATA USAHA & nomor WA pengelola  (yang paling sering diubah)
+    assets/app.js          -> logika kartu, pencarian, filter kategori
+    assets/app.css         -> CSS hasil build (jangan diedit langsung)
+    assets/img/            -> logo mimika.shop & logo tiap usaha
+  src/app.css              -> sumber CSS (Tailwind v4)
+  package.json             -> untuk build ulang CSS bila index.html/app.js diubah
+
+COBA DI LAPTOP
+  Laragon: Reload/Restart, lalu buka  http://mimika-shop.test
+
+MENAMBAH / MENGUBAH USAHA
+  1. Buka public/assets/usaha.js, salin satu blok { ... } lalu ubah isinya.
+  2. Logo (opsional): taruh di public/assets/img/, isi  logo: 'assets/img/nama.svg'
+     Tanpa logo: isi  inisial  dan  warna.
+  3. Bagian bertanda TODO masih perlu diisi data asli.
+  Cukup unggah ulang usaha.js (dan logonya). Tidak perlu build ulang.
+
+BUILD ULANG CSS (hanya bila index.html atau app.js diubah dan memakai class baru)
+  npm install
+  npm run build
+
+PASANG DI HOSTINGER (domain utama mimika.shop)
+  PERHATIAN: saat ini mimika.shop menampilkan portal Pasar Sentral.
+  Pastikan portal itu sudah dipindah/tersedia di pasarsentral.mimika.cloud lebih dulu.
+  1. Cadangkan isi lama:   cd ~/domains/mimika.shop && mv public_html public_html_lama
+     (kalau public_html ternyata symlink ke aplikasi Laravel, cukup hapus symlink-nya: rm public_html)
+  2. Buat folder baru dan unggah ISI folder public/ ke ~/domains/mimika.shop/public_html
+     (File Manager Hostinger -> Upload, atau lewat git/scp).
+  3. Buka https://mimika.shop  — subdomain (bens., skymart., dst.) tidak terpengaruh.
+
+HALAMAN DEMO (demo.mimika.shop)
+  Folder demo/ = isi website demo.mimika.shop (halaman pilihan demo aplikasi).
+  Build CSS (npm run build) otomatis menyalin app.css ke demo/assets juga.
+  Pasang: buat subdomain "demo" di hPanel, lalu dari laptop:
+    cd C:\laragon\www\mimika-shop\demo
+    scp -P 65002 -r index.html favicon.svg assets u997824475@153.92.8.139:domains/demo.mimika.shop/public_html/
+  (hapus dulu default.php di folder itu lewat SSH bila ingin; index.html tetap didahulukan)

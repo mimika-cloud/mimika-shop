@@ -1,0 +1,25 @@
+@import "tailwindcss";
+@source "../public";
+@source "../demo";
+
+@theme {
+    --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-display: "Fraunces", ui-serif, Georgia, serif;
+    --color-laut: #0f3d3e;
+    --color-laut-700: #164f50;
+    --color-laut-50: #e8f1f0;
+    --color-senja: #f4a259;
+    --color-senja-600: #e0873a;
+    --color-pasir: #f6efe2;
+    --color-tinta: #1b1f1e;
+}
+
+@utility btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition; }
+@utility chip { @apply rounded-full border border-laut/15 bg-white px-4 py-2 text-sm font-medium text-laut transition hover:border-laut/40; }
+
+html { scroll-behavior: smooth; }
+.chip[aria-pressed="true"] { background: var(--color-laut); color: white; border-color: var(--color-laut); }
+.motif {
+    background-image: radial-gradient(circle at 1px 1px, rgb(15 61 62 / .09) 1px, transparent 0);
+    background-size: 18px 18px;
+}
