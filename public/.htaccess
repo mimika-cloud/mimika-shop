@@ -7,3 +7,11 @@ RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
+
+# Halaman HTML selalu dicek ulang ke server (tidak disimpan lama di CDN/browser),
+# sehingga nomor versi css/js yang baru langsung terbaca.
+<IfModule mod_headers.c>
+<FilesMatch "\.html$">
+Header set Cache-Control "no-cache, must-revalidate"
+</FilesMatch>
+</IfModule>
