@@ -21,7 +21,7 @@ window.MIMIKA = {
             nama: "Ben's Robotic Wash",
             url: 'https://bens.mimika.shop',
             kategori: 'Otomotif',
-            ringkas: 'Cuci mobil robotic tanpa sentuh (touchless) pertama di Timika, plus kafe kopi Wamena selagi menunggu. Bisa booking online.',
+            ringkas: 'Cuci mobil robotic tanpa sentuh (touchless) pertama di Timika, plus aneka menu favorit di Ben's Kitchen selagi menunggu. Bisa booking online.',
             alamat: 'Jl. Amungsa, Kwamki, Mimika Baru',
             jam: '08.00–18.00 WIT',
             wa: '082148438909',
